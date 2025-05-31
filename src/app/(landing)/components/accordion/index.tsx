@@ -46,9 +46,9 @@ export default AccordionSection;
 
 const TextSection = () => {
 	return (
-		<div className='col-span-1 flex flex-col gap-8 px-8 py-10'>
+		<div className='col-span-1 flex flex-col gap-5 px-2 py-8 md:gap-8 md:px-8 md:py-10'>
 			<span className='text-xs'>Our Values</span>
-			<h2 className='text-4xl'>We Believe</h2>
+			<h2 className='md:text-4xl text-2xl'>We Believe</h2>
 			<p className='text-sm'>
 				At HiFi, we respect the visionaries that came before us - however, we
 				are taking a radically different approach than those that built the

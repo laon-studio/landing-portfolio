@@ -29,13 +29,13 @@ const AccordionItem = ({ title, content }: IAccordionItem) => {
 	}, [isOpen]);
 
 	return (
-		<div className='w-full border border-platinum rounded-3xl px-8 py-10'>
+		<div className='w-full border border-platinum rounded-3xl p-5 md:px-8 md:py-10'>
 			<div
 				className='flex justify-between items-center cursor-pointer group overflow-hidden'
 				onClick={setIsOpen}>
-				<span className='text-2xl'>{title}</span>
+				<span className='text-xl md:text-2xl'>{title}</span>
 				<button
-					className={`p-3 ${
+					className={`p-1 md:p-3 ${
 						isOpen ? 'bg-primary' : 'bg-platinum'
 					} group-hover:bg-primary rounded-lg transition-color duration-300`}>
 					<IconArrow isOpen={isOpen} />
