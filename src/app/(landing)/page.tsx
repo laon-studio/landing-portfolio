@@ -1,11 +1,13 @@
+import Header from './components/header';
 import AccordionSection from './components/accordion';
 
 const LandingPage = () => {
-	return (
-		<div className='max-w-[1488px] mx-auto'>
-			<AccordionSection />
-		</div>
-	);
+  return (
+    <div className='w-full bg-white font-body max-w-[1600px] m-auto px-4 md:px-8 lg:px-14'>
+      <Header />
+      <AccordionSection />
+    </div>
+  );
 };
 
 export default LandingPage;
