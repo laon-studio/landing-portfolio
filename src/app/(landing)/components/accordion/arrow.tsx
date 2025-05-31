@@ -1,7 +1,7 @@
 const IconArrow = ({ isOpen }: { isOpen: boolean }) => {
 	return (
 		<svg
-			className={`w-4 h-4 text-black md:w-8 md:h-8 ${
+			className={`w-4 h-4 text-black md:w-6 md:h-6 ${
 				isOpen ? 'rotate-180' : ''
 			} transition-transform duration-300`}
 			focusable='false'

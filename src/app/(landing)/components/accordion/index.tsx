@@ -25,16 +25,18 @@ const AccordionContents = [
 
 const AccordionSection = () => {
 	return (
-		<div className='flex justify-between'>
+		<div className='w-full grid grid-cols-1 md:grid-cols-3'>
 			<TextSection />
-			<div className='w-full  max-w-[768px] flex flex-col items-end'>
-				{AccordionContents.map((item, index) => (
-					<AccordionItem
-						key={index}
-						title={item.title}
-						content={item.content}
-					/>
-				))}
+			<div className='w-full max-w-3xl col-span-2 ml-auto'>
+				<div className='flex flex-col'>
+					{AccordionContents.map((item, index) => (
+						<AccordionItem
+							key={index}
+							title={item.title}
+							content={item.content}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
 	);
@@ -44,10 +46,10 @@ export default AccordionSection;
 
 const TextSection = () => {
 	return (
-		<div className='w-[300px] mx-2 my-8'>
-			<span>Our Values</span>
-			<h2>We Believe</h2>
-			<p>
+		<div className='col-span-1 flex flex-col gap-8 px-8 py-10'>
+			<span className='text-xs'>Our Values</span>
+			<h2 className='text-4xl'>We Believe</h2>
+			<p className='text-sm'>
 				At HiFi, we respect the visionaries that came before us - however, we
 				are taking a radically different approach than those that built the
 				world of big tech and traditional finance. We understand that the path
