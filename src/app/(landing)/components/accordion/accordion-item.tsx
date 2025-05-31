@@ -16,19 +16,15 @@ const AccordionItem = ({ title, content }: IAccordionItem) => {
 	useEffect(() => {
 		const updateHeight = () => {
 			if (contentRef.current) {
-				// 창 크기에 따라 scrollHeight를 동적으로 다시 계산
 				const scrollHeight = contentRef.current.scrollHeight;
 				setHeight(isOpen ? `${scrollHeight}px` : '0px');
 			}
 		};
 
-		// 컴포넌트 마운트 시, 그리고 isOpen 값 변경 시 높이 초기 업데이트
 		updateHeight();
 
-		// 창 리사이즈 이벤트 등록
 		window.addEventListener('resize', updateHeight);
 
-		// cleanup: 컴포넌트 언마운트 또는 의존성이 변경될 때 이벤트 제거
 		return () => window.removeEventListener('resize', updateHeight);
 	}, [isOpen]);
 
