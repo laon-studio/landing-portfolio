@@ -1,4 +1,5 @@
 import Header from './components/header';
+import Footer from './components/footer';
 import AccordionSection from './components/accordion';
 
 const LandingPage = () => {
@@ -6,6 +7,7 @@ const LandingPage = () => {
     <div className='w-full bg-white font-body max-w-[1600px] m-auto px-4 md:px-8 lg:px-14'>
       <Header />
       <AccordionSection />
+      <Footer />
     </div>
   );
 };
