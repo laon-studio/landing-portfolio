@@ -3,6 +3,4 @@
 3. 브랜치 명은 issue번호-feature명로 만듭니다.
 4. pull request를 만들때 해당 이슈번호를 연결합니다.
 
-[FEAT]
-[ADD]
-[FIX]
+[FEAT] [ADD] [FIX]
