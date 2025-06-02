@@ -1,6 +1,7 @@
 import Header from './components/header';
 import Footer from './components/footer';
 import AccordionSection from './components/accordion';
+import ActionCard from './components/actionCard';
 import CardSection from './components/card';
 
 const LandingPage = () => {
@@ -9,6 +10,7 @@ const LandingPage = () => {
       <Header />
       <AccordionSection />
       <CardSection />
+      <ActionCard />
       <Footer />
     </div>
   );
