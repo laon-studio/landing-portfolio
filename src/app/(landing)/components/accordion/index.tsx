@@ -25,7 +25,7 @@ const AccordionContents = [
 
 const AccordionSection = () => {
   return (
-    <div className='w-full grid grid-cols-1 md:grid-cols-3'>
+    <div className='w-full grid grid-cols-1 md:grid-cols-3 md:pb-[120px] pb-[60px]'>
       <TextSection />
       <div className='w-full max-w-3xl col-span-2 ml-auto'>
         <div className='flex flex-col'>
