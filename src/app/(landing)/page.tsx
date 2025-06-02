@@ -2,6 +2,7 @@ import Header from './components/header';
 import Hero from './components/hero';
 import AccordionSection from './components/accordion';
 import CardSection from './components/card';
+import CounterSection from './components/counter';
 import ActionCard from './components/actionCard';
 import Footer from './components/footer';
 
@@ -13,6 +14,7 @@ const LandingPage = () => {
       <AccordionSection />
       <CardSection />
       <ActionCard />
+      <CounterSection />
       <Footer />
     </div>
   );
