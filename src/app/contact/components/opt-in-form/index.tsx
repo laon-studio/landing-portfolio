@@ -29,8 +29,6 @@ const OptInForm = () => {
         .then((res) => res.text())
         .then((text) => text);
 
-      console.log({ response });
-
       if (response === 'success') {
         (e.target as HTMLFormElement).reset();
         alert('Success');
