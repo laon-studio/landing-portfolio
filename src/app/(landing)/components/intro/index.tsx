@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const Intro = () => {
   return (
-    <div>
+    <>
       <div className='w-full h-auto pb-[100px] md:pb-[200px]'></div>
       <div className='flex items-center justify-center'>
         <div className='flex flex-col max-w-xl gap-8 text-center'>
@@ -332,7 +332,7 @@ const Intro = () => {
         </div>
       </div>
       <div className='w-full h-auto pb-[100px] md:pb-[200px]'></div>
-    </div>
+    </>
   );
 };
 

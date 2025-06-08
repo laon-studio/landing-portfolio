@@ -15,8 +15,8 @@ const LandingPage = () => {
       <Intro />
       <AccordionSection />
       <CardSection />
-      <ActionCard />
       <CounterSection />
+      <ActionCard />
       <Footer />
     </div>
   );
