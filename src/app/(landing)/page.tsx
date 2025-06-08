@@ -1,5 +1,6 @@
 import Header from './components/header';
 import Hero from './components/hero';
+import Intro from './components/intro';
 import AccordionSection from './components/accordion';
 import CardSection from './components/card';
 import CounterSection from './components/counter';
@@ -11,6 +12,7 @@ const LandingPage = () => {
     <div className='w-full bg-white font-body max-w-[1600px] m-auto px-4 md:px-8 lg:px-14'>
       <Header />
       <Hero />
+      <Intro />
       <AccordionSection />
       <CardSection />
       <ActionCard />
