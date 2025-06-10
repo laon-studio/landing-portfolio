@@ -23,7 +23,7 @@ export default function RootLayout({
           rel='stylesheet'
         />
       </head>
-      <body className='antialiased'>
+      <body className='antialiased max-w-[1600px] mx-auto'>
         <Header />
         <main>{children}</main>
         <Footer />
