@@ -3,7 +3,7 @@ import OptInForm from './components/opt-in-form';
 
 const ContactPage = () => {
   return (
-    <div className='flex px-8 pb-[60px] md:pb-[120px]'>
+    <div className='flex pb-[60px] md:pb-[120px]'>
       <div className='w-full bg-primary rounded-[30px] px-4 py-8 md:p-8 flex flex-col gap-4 justify-center'>
         <div className='flex gap-2 items-center'>
           <div className='block w-7 p-2 bg-black rounded-lg'>
