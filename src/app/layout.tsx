@@ -24,9 +24,18 @@ export default function RootLayout({
         />
       </head>
       <body className='antialiased'>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <div className='w-full px-4 py-2 text-center text-xs text-black bg-primary'>
+          This is a non-commercial clone of{' '}
+          <a href='https://www.hifibridge.com/' target='_blank'>
+            HIFI
+          </a>{' '}
+          created for learning purposes.
+        </div>
+        <div className='w-full bg-white font-body max-w-[1600px] m-auto px-4 md:px-8 lg:px-14'>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
