@@ -23,7 +23,7 @@ export default function RootLayout({
           rel='stylesheet'
         />
       </head>
-      <body className='antialiased max-w-[1600px] mx-auto'>
+      <body className='antialiased'>
         <div className='w-full px-4 py-2 text-center text-xs text-black bg-primary'>
           This is a non-commercial clone of{' '}
           <a href='https://www.hifibridge.com/' target='_blank'>

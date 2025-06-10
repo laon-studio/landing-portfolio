@@ -7,14 +7,14 @@ import ActionCard from './components/actionCard';
 
 const LandingPage = () => {
   return (
-    <div className='w-full bg-white font-body px-4 md:px-8 lg:px-14'>
+    <>
       <Hero />
       <Intro />
       <AccordionSection />
       <CardSection />
       <CounterSection />
       <ActionCard />
-    </div>
+    </>
   );
 };
 
