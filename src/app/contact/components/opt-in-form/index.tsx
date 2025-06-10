@@ -1,137 +1,159 @@
 'use client';
 
-import { FormEvent, FormEventHandler, useRef } from 'react';
+import {
+  FormProvider,
+  RegisterOptions,
+  SubmitHandler,
+  useForm,
+  useFormContext,
+} from 'react-hook-form';
+
+interface IFormData {
+  fullName: string;
+  email: string;
+  phone?: string;
+  money: string;
+}
 
 const OptInForm = () => {
-  const formRef = useRef<HTMLFormElement>(null);
+  const methods = useForm<IFormData>({ mode: 'onChange' });
 
-  const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (
-    e: FormEvent
-  ) => {
-    e.preventDefault();
-    if (!formRef.current) return;
-    const formData = new FormData(formRef.current);
-    const objData: { [key: string]: string } = {};
-    formData.forEach((value, key) => {
-      if (typeof value === 'string') {
-        objData[key] = value;
-      }
-    });
+  const onSubmit: SubmitHandler<IFormData> = async (data) => {
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL ?? '',
         {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(objData),
+          body: JSON.stringify(data),
         }
-      )
-        .then((res) => res.text())
-        .then((text) => text);
+      ).then((res) => res.text());
 
       if (response === 'success') {
-        (e.target as HTMLFormElement).reset();
+        methods.reset(); // react-hook-form 방식으로 폼 초기화
         alert('Success');
-        return;
       } else {
         alert('Failed... Try again later');
-        return;
       }
-    } catch (error: unknown) {
+    } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed... Try again later');
     }
   };
 
   return (
-    <form
-      className='flex flex-col gap-4'
-      onSubmit={handleOnSubmit}
-      ref={formRef}
-    >
-      <div>
-        <label htmlFor='fullName' className='text-xs'>
-          <span>FULL NAME</span> <IconRequired />
-        </label>
-        <OptInInput
-          type='text'
-          id='fullName'
-          name='fullName'
-          required
-          placeholder='Your full name'
-        />
-      </div>
-      <div>
-        <label htmlFor='email' className='text-xs'>
-          <span>EMAIL</span> <IconRequired />
-        </label>
-        <OptInInput
-          type='email'
-          id='email'
-          name='email'
-          required
-          placeholder='Your email'
-        />
-      </div>
-      <div>
-        <label htmlFor='phone' className='text-xs'>
-          <span>PHONE</span> <IconRequired />
-        </label>
-        <OptInInput
-          type='tel'
-          id='phone'
-          name='phone'
-          placeholder='Your phone number'
-        />
-      </div>
-      <div>
-        <label htmlFor='money' className='text-xs'>
-          READY TO MOVE MONEY?
-        </label>
-        <select
-          id='money'
-          name='money'
-          defaultValue=''
-          className='w-full h-10 bg-[#f5f8fa] px-[15px] border border-[#cbd6e2] rounded-[15px]'
-        >
-          <option value='' disabled>
-            Select your timeframe
-          </option>
-          <option value='lt-1'>&lt; 1 Month</option>
-          <option value='1-3'>1 Month – 3 Months</option>
-          <option value='3-6'>3 Months – 6 Months</option>
-        </select>
-      </div>
-      <div>
-        <button
-          className='bg-primary px-6 py-3 rounded-xl text-xs font-bold'
-          type='submit'
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+    <FormProvider {...methods}>
+      <form
+        className='flex flex-col gap-4'
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
+        <div>
+          <label htmlFor='fullName' className='flex text-xs'>
+            <span>FULL NAME</span> <IconRequired />
+          </label>
+          <OptInInput
+            type='text'
+            id='fullName'
+            name='fullName'
+            required
+            placeholder='Your full name'
+            rules={{ required: 'Please complete this required field.' }}
+          />
+        </div>
+        <div>
+          <label htmlFor='email' className='flex text-xs'>
+            <span>EMAIL</span> <IconRequired />
+          </label>
+          <OptInInput
+            type='email'
+            id='email'
+            name='email'
+            required
+            placeholder='Your email'
+            rules={{
+              required: 'Please complete this required field.',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Please enter a valid email address.',
+              },
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor='phone' className='flex text-xs'>
+            <span>PHONE</span> <IconRequired />
+          </label>
+          <OptInInput
+            type='tel'
+            id='phone'
+            name='phone'
+            placeholder='Your phone number'
+            rules={{ required: 'Please complete this required field.' }}
+          />
+        </div>
+        <div>
+          <label htmlFor='money' className='flex text-xs'>
+            READY TO MOVE MONEY?
+          </label>
+          <select
+            id='money'
+            name='money'
+            defaultValue=''
+            className='w-full h-10 bg-[#f5f8fa] px-[15px] border border-[#cbd6e2] rounded-[15px] mt-1'
+          >
+            <option value='' disabled>
+              Select your timeframe
+            </option>
+            <option value='lt-1'>&lt; 1 Month</option>
+            <option value='1-3'>1 Month – 3 Months</option>
+            <option value='3-6'>3 Months – 6 Months</option>
+          </select>
+        </div>
+        <div>
+          <button
+            className='bg-primary px-6 py-3 rounded-xl text-xs font-bold'
+            type='submit'
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </FormProvider>
   );
 };
 
 export default OptInForm;
 
-const OptInInput = ({
+type OptInInputProps<K extends keyof IFormData> = {
+  name: K;
+  rules?: RegisterOptions<IFormData, K>;
+} & Omit<React.ComponentProps<'input'>, 'name'>;
+
+const OptInInput = <K extends keyof IFormData>({
   type,
   id,
   name,
   required,
   placeholder,
-}: React.InputHTMLAttributes<HTMLInputElement>) => {
+  rules,
+}: OptInInputProps<K>) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<IFormData>();
+
   return (
-    <input
-      type={type}
-      id={id}
-      name={name}
-      required={required}
-      placeholder={placeholder}
-      className='w-full h-10 bg-[#f5f8fa] px-[15px] border border-[#cbd6e2] rounded-[15px]'
-    />
+    <div>
+      <input
+        type={type}
+        id={id}
+        required={required}
+        placeholder={placeholder}
+        {...register(name, rules)}
+        className='w-full h-10 bg-[#f5f8fa] px-[15px] border border-[#cbd6e2] rounded-[15px] mt-1'
+      />
+      {errors[name] && <p className='text-red-500'>{errors[name]?.message}</p>}
+    </div>
   );
 };
 
