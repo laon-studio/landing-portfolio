@@ -44,8 +44,9 @@ const OptInForm = () => {
   return (
     <FormProvider {...methods}>
       <form
-        className='flex flex-col gap-4'
+        className='flex flex-col gap-4 h-full'
         onSubmit={methods.handleSubmit(onSubmit)}
+        noValidate
       >
         <div>
           <label htmlFor='fullName' className='flex text-xs'>
@@ -84,11 +85,17 @@ const OptInForm = () => {
             <span>PHONE</span> <IconRequired />
           </label>
           <OptInInput
-            type='tel'
+            type='text'
             id='phone'
             name='phone'
             placeholder='Your phone number'
-            rules={{ required: 'Please complete this required field.' }}
+            rules={{
+              required: 'Please complete this required field.',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: 'Please enter a valid phone number.',
+              },
+            }}
           />
         </div>
         <div>
@@ -97,8 +104,8 @@ const OptInForm = () => {
           </label>
           <select
             id='money'
-            name='money'
             defaultValue=''
+            {...methods.register('money')}
             className='w-full h-10 bg-[#f5f8fa] px-[15px] border border-[#cbd6e2] rounded-[15px] mt-1'
           >
             <option value='' disabled>
@@ -109,7 +116,7 @@ const OptInForm = () => {
             <option value='3-6'>3 Months – 6 Months</option>
           </select>
         </div>
-        <div>
+        <div className='mt-auto'>
           <button
             className='bg-primary px-6 py-3 rounded-xl text-xs font-bold'
             type='submit'
