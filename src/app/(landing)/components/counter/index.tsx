@@ -50,7 +50,12 @@ const CounterSection = () => {
                 <h2 className='text-4xl leading-4xl md:text-5xl md:leading-5xl text-primary'>
                   <div>
                     <span>
-                      <CountUp duration={3} start={0} end={item.value} />
+                      <CountUp
+                        duration={3}
+                        start={0}
+                        end={item.value}
+                        enableScrollSpy={true}
+                      />
                     </span>
                     {item.unit}
                   </div>
