@@ -50,7 +50,7 @@ const OptInForm = () => {
       ref={formRef}
     >
       <div>
-        <label htmlFor='fullName'>
+        <label htmlFor='fullName' className='text-xs'>
           <span>FULL NAME</span> <IconRequired />
         </label>
         <OptInInput
@@ -62,7 +62,7 @@ const OptInForm = () => {
         />
       </div>
       <div>
-        <label htmlFor='email'>
+        <label htmlFor='email' className='text-xs'>
           <span>EMAIL</span> <IconRequired />
         </label>
         <OptInInput
@@ -74,7 +74,7 @@ const OptInForm = () => {
         />
       </div>
       <div>
-        <label htmlFor='phone'>
+        <label htmlFor='phone' className='text-xs'>
           <span>PHONE</span> <IconRequired />
         </label>
         <OptInInput
@@ -85,7 +85,9 @@ const OptInForm = () => {
         />
       </div>
       <div>
-        <label htmlFor='money'>READY TO MOVE MONEY?</label>
+        <label htmlFor='money' className='text-xs'>
+          READY TO MOVE MONEY?
+        </label>
         <select
           id='money'
           name='money'
@@ -101,7 +103,10 @@ const OptInForm = () => {
         </select>
       </div>
       <div>
-        <button className='bg-primary px-6 py-3 rounded-xl' type='submit'>
+        <button
+          className='bg-primary px-6 py-3 rounded-xl text-xs font-bold'
+          type='submit'
+        >
           Submit
         </button>
       </div>
